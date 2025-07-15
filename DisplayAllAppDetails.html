@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>All App Details</title>
+
+    <!-- external link left as‑is (harmless) -->
+    <link rel="stylesheet" href="app-attacks">
+
+    <!-- ────────── embedded CSS ────────── -->
+    <style>
+      @charset "UTF-8";
+      /* ---------- customer.css ---------- */
+
+      /* 1. Basic page layout */
+      body {
+        margin: 0;
+        padding: 32px 16px;
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background: #f7f9fc;
+        color: #333;
+      }
+
+      /* 2. Center container created by the <center> tag */
+      center {
+        display: block;            /* make it behave like a div */
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      /* 3. Headings */
+      h1 {
+        margin: 0 0 24px;
+        font-size: 2rem;
+        color: #0d6efd;            /* Bootstrap‑blue accent */
+        letter-spacing: 0.5px;
+      }
+
+      /* 4. Search form (not used here but kept from original CSS) */
+      form {
+        margin-bottom: 24px;
+      }
+      input[name="find"] {
+        padding: 10px 14px;
+        min-width: 240px;
+        border: 1px solid #ccc;
+        border-radius: 6px 0 0 6px;
+        font-size: 0.95rem;
+      }
+      input[type="submit"] {
+        padding: 10px 24px;
+        border: none;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.95rem;
+        background: #0d6efd;
+        color: #fff;
+        cursor: pointer;
+        transition: background 0.2s ease-in-out;
+      }
+      input[type="submit"]:hover {
+        background: #084298;       /* darker blue on hover */
+      }
+
+      /* 5. Data table */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+      }
+      th,
+      td {
+        padding: 12px 16px;
+        text-align: left;
+      }
+      th {
+        background: #0d6efd;
+        color: #fff;
+        font-weight: 600;
+      }
+      tr:nth-child(even) {
+        background: #eef4ff;       /* subtle zebra striping */
+      }
+      tr:hover {
+        background: #dce9ff;       /* row highlight on hover */
+      }
+
+      /* 6. Responsive tweak: stack table on very small screens */
+      @media (max-width: 600px) {
+        table, thead, tbody, th, td, tr {
+          display: block;
+          width: 100%;
+        }
+        thead {
+          display: none;           /* hide header row */
+        }
+        tr {
+          margin-bottom: 12px;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          overflow: hidden;
+        }
+        td {
+          position: relative;
+          padding-left: 50%;
+          white-space: pre-line;
+        }
+        td::before {
+          content: attr(data-th) ": ";
+          position: absolute;
+          left: 16px;
+          top: 12px;
+          font-weight: 600;
+        }
+      }
+    </style>
+    <!-- ───────── end of embedded CSS ───────── -->
+</head>
+
+<body>
+<center>
+    <h1>All The APP Details</h1>
+     <form action="getthedetails">
+<input placeholder="Enter the Appname or eamilid or version" name="find">
+<input type="submit" value="search">
+</form>
+
+    <table border="1">
+   
+        <thead>
+            <tr>
+                <th>AppID</th>
+                <th>App Name</th>
+                <th>Attack Name</th>
+                <th>Old Version</th>
+                <th>New Version</th>
+                <th>App ID</th>
+                <th>OS Support</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="app : ${displayallappdetails}">
+                <td th:text="${app.id}"></td>
+                <td th:text="${app.appname}"></td>
+                <td th:text="${app.attackName}"></td>
+                <td th:text="${app.oldversion}"></td>
+                <td th:text="${app.newversion}"></td>
+                <td th:text="${app.appid}"></td>
+                <td th:text="${app.ossupport}"></td>
+                <td th:text="${app.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+</center>
+</body>
+</html>
